@@ -6,7 +6,7 @@ int main()
     while (count < 10)
     {
        
-        cout << "Current Count:"<<count << endl;
+        cout << "Current Count:"<<count<< endl;
     
          count++;
     }

@@ -1,8 +1,5 @@
-#Ignore the .vscode folder
+# Ignore .vscode directory
 .vscode/
-.c_cpp_properties.json/
-.launch.json/
-.settings.json/
 
-#Ignore .exe files
+# Ignore all .exe files
 *.exe

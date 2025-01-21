@@ -8,7 +8,7 @@ Welcome to my C++ programming repository! This repository contains a curated col
 
 - **Beginner to Advanced**: Programs range from basic control structures to advanced topics like classes, inheritance, and polymorphism.
 - **Educational Focus**: Each program is well-documented with inline comments to enhance code readability and understanding.
-- **Reusable Code**: The code is modular and can be reused or adapted for your learning or personal projects.
+- **Reusable Code**: The code is modular and can be reused or adapted for your learning or personal projects..
 
 ---
 

@@ -36,3 +36,19 @@ public:
     // Display balance
     void showBalance() {
         cout << "Account Holder: " << owner << " | Balance: $" << balance << endl;
+    }
+};
+
+int main() {
+    // Creating a BankAccount object
+    BankAccount myAccount("John Doe", 1000.0);
+
+    // Performing transactions
+    myAccount.showBalance();
+    myAccount.deposit(500);
+    myAccount.withdraw(200);
+    myAccount.withdraw(1500);  // Invalid withdrawal
+    myAccount.showBalance();
+
+    return 0;
+}

@@ -11,7 +11,7 @@ int main() {
     // Loop to print each row
     for (int i = 1; i <= n; i++) {
         // Loop to print spaces
-        for (int j = 1; j <= n - i; j++) {
+        for (int j = 1; j <= n ; j++) {
             cout << " ";
         }
         // Loop to print stars

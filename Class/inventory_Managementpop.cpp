@@ -17,9 +17,9 @@ struct InventoryManagement
     }
 };
 int main()
-{
+{   
     int X;
-    //FIRST ITEM
+    
     InventoryManagement item1;
     item1.itemName="Laptop";
     item1.quantity=10;

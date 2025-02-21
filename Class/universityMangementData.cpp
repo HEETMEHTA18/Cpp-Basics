@@ -50,7 +50,7 @@ int main() {
     cout<<"*Enter the  deatils of the students ::*"<<endl;
     cout<<endl;
     
-    Student student [n];//dyanic entry of the students and the run time intialization
+    Student student [n];//dynamic entry of the students and the run time intialization
     for(int i = 0; i < n; i++) {
         int rollNumber, marks1, marks2, marks3;
         string name;
@@ -73,9 +73,5 @@ int main() {
             student[i].displayDetails();
         }
     }
-   
-
-
-
     return 0;
 }

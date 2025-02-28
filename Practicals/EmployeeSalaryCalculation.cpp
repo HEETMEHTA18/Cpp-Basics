@@ -19,18 +19,18 @@ public:
 
     void displayDetails() const {
         cout << "Name: " << name << endl;
-        cout << "Basic Salary: $" << basicSalary << endl;
-        cout << "Bonus: $" << bonus << endl;
-        cout << "Total Salary: $" << getTotalSalary() << endl;
+        // cout << "Basic Salary: $" << basicSalary << endl;
+        // cout << "Bonus: $" << bonus << endl;
+        // cout << "Total Salary: $" << getTotalSalary() << endl;
     }
 };
 
 int main() {
     vector<Employee> employees;
 
-    employees.emplace_back("John Doe", 5000.0);
-    employees.emplace_back("Jane Smith", 6000.0);
-    employees.emplace_back("Alice Johnson", 7000.0, 1500.0);
+    employees.emplace_back("John Doe");
+    employees.emplace_back("Jane Smith");
+    employees.emplace_back("Alice Johnson");
 
     for (const auto &emp : employees) {
         emp.displayDetails();

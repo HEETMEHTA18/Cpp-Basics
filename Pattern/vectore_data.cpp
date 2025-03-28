@@ -33,7 +33,7 @@ int main() {
                 if (!myVector.empty()) {
                     cout << "Enter value to remove: ";
                     cin >> value;
-                    auto it = find(myVector.begin(), myVector.end(), value);
+                    auto it = find (myVector.begin(), myVector.end(), value);
                     if (it != myVector.end()) {
                         myVector.erase(it);
                         cout << "Element removed.\n";

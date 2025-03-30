@@ -1,4 +1,5 @@
-#include <array_lib.h>
+#include <iostream>
+using namespace std;
 
 Array::Array() {
     size = 0;

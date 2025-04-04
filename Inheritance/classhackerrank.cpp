@@ -9,7 +9,7 @@ private:
     string last_name;
     int standard;
 
-public:
+public: 
     void set_age(int a) { age = a; }
     void set_first_name(string fname) { first_name = fname; }
     void set_last_name(string lname) { last_name = lname; }

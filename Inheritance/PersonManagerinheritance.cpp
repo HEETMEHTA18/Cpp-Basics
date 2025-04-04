@@ -1,74 +1,107 @@
-#include<iostream>
-#include<string.h>
-
+#include <iostream>
+#include <string>
 using namespace std;
-class person//ALWAYS THE BASE CLASS CONSTRUCTOR IS CALLED AND INTIALIZED FIRST
-{
-string name;
-int age;
+
+class Person {
+protected:
+    string name;
+    int age;
+
 public:
-void getdetails()
-{
-    cout<<"Enter Name:";
-    cin>>name;
-    cout<<"Enter Age:";
-    cin>>age;
+    Person() {}
 
-}
-void showdetails()
-{
-    cout<<"Name:"<<name<<endl;
-    cout<<"Age:"<<age<<endl;
-}
+    Person(string n, int a) : name(n), age(a) {}
 
-};
-class employee : public manager
-{
-    string designation;
-    int empsalary;
-    public:
-    void getdetails()
-    {
-        manager::getdetails();
-        cout<<"Enter Designation:";
-        cin>>designation;
-        cout<<"Enter Salary:";
-        cin>>empsalary;
-    }
-    void showdetails()
-    {
-        manager::showdetails();
-        cout<<"Designation:"<<designation<<endl;
-        cout<<"Salary:"<<empsalary<<endl;
+    virtual void display() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
     }
 
+    void setPerson(string n, int a) {
+        name = n;
+        age = a;
+    }
 };
-class manager: public person
-{
+
+class Employee : public Person {
+protected:
+    int employeeID;
+
+public:
+    Employee() {}
+
+    Employee(string n, int a, int id) : Person(n, a), employeeID(id) {}
+
+    void display() override {
+        Person::display();
+        cout << "Employee ID: " << employeeID << endl;
+    }
+
+    void setEmployee(string n, int a, int id) {
+        setPerson(n, a);
+        employeeID = id;
+    }
+
+    int getID() const {
+        return employeeID;
+    }
+};
+
+class Manager : public Employee {
     string department;
-    int salary;
-    public:
-    void getdetails()
-    {
-        person::getdetails();
-        cout<<"Enter Department:";
-        cin>>department;
-        cout<<"Enter Salary:";
-        cin>>salary;
+
+public:
+    Manager() {}
+
+    Manager(string n, int a, int id, string dept)
+        : Employee(n, a, id), department(dept) {}
+
+    void display() override {
+        Employee::display();
+        cout << "Department: " << department << endl;
     }
-    void showdetails()
-    {
-        person::showdetails();
-        cout<<"Department:"<<department<<endl;
-        cout<<"Salary:"<<salary<<endl;
+
+    void setManager(string n, int a, int id, string dept) {
+        setEmployee(n, a, id);
+        department = dept;
+    }
+
+    int getID() const {
+        return employeeID;
     }
 };
 
-int main()
-{
-   employee E;
-   E.getdetails();  
-    cout<<endl;
+int main() {
+    const int SIZE = 2;
+    Manager managers[SIZE];
+
+    for (int i = 0; i < SIZE; ++i) {
+        string name, department;
+        int age, empID;
+
+        cout << "\nEnter details for Manager #" << (i + 1) << endl;
+        cout << "Name: ";
+        cin.ignore(); 
+        getline(cin, name);
+
+        cout << "Age: ";
+        cin >> age;
+
+        cout << "Employee ID: ";
+        cin >> empID;
+
+        cout << "Department: ";
+        cin.ignore(); 
+        getline(cin, department);
+
+        managers[i].setManager(name, age, empID, department);
+    }
+
+    cout << "\n--- Manager Details ---\n";
+    for (int i = 0; i < SIZE; ++i) {
+        managers[i].display();
+        cout << "------------------------\n";
+    }
 
     return 0;
 }

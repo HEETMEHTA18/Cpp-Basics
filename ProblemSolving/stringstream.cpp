@@ -11,7 +11,7 @@ vector<int> parseInts(string str) {
 
     while (ss >> number) {
         result.push_back(number);
-        ss >> comma;  // discard the comma
+        ss >> comma;  
     }
 
     return result;

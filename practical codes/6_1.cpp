@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 class DynArray {
     int *data;
@@ -30,9 +31,9 @@ public:
 
 int main() {
     DynArray arr;
-    arr.push(1);
-    arr.push(2);
-    arr.push(3);
+    arr.push(10);
+    arr.push(20);
+    arr.push(30);
     arr.removeAt(1);
     arr.print();
     return 0;

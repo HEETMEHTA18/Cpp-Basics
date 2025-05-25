@@ -82,8 +82,9 @@ int main()
     Shape* s2=new Rectangle(4.0,5.0);
     s1->Area();
     s2->Area();
-    cout << endl;
     delete s1;
     delete s2;
+    
+    cout << endl;
     return 0;
 }

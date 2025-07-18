@@ -55,7 +55,7 @@ void Selectionsort(int arr1[], int arr2[], int n)
 }
 
 int main()
-{
+{   
     int n;
     cin >> n;
     int roll_no[n], submissiontime[n];

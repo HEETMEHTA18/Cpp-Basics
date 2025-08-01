@@ -21,7 +21,6 @@ using namespace std;
       {
         return Binarysearch(rollnumber,key,l,m-1);
       }
-      
      else
       {
           return Binarysearch(rollnumber,key,m+1,h);
@@ -55,5 +54,3 @@ int main() {
    
     return 0;
 }
-// This code implements a binary search algorithm to find the index of a student's submission based on their roll number.
-// It reads the number of students, their roll numbers, and submission counts, then searches for

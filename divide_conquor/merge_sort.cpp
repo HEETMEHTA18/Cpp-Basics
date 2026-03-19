@@ -1,125 +1,48 @@
-// #include <cmath>
-// #include <cstdio>
-// #include <vector>
-// #include <iostream>
-// #include <algorithm>
-// using namespace std;
-
-// int s_merge(int arr[], int first, int middle, int last)
-// {
-//     int n1 = middle - first + 1;
-//     int n2 = last - middle;
-    
-//     int left[n1], right[n2];
-//     int temp[n1+n2];
-//     for(int i = 0; i < n1; i++)
-//         left[i] = arr[first + i];
-//     for(int j = 0; j < n2; j++)
-//         right[j] = arr[middle + 1 + j];
-        
-//     int i = 0, j = 0, k = first;
-    
-//     while(i < n1 && j < n2)
-//     {
-//         if(left[i] <= right[j])
-//         {
-//             arr[k] = left[i];
-//             i++;
-//         }
-//         else
-//         {
-//             arr[k] = right[j];
-//             j++;
-//         }
-//         k++;
-//     }
-    
-//     while(i < n1)
-//     {
-//         arr[k] = left[i];
-//         i++;
-//         k++;
-//     }
-    
-//     while(j < n2)
-//     {
-//         arr[k] = right[j];
-//         j++;
-//         k++;
-//     }
-// for(int i = 0; i < n1 + n2; i++)
-//     arr[first+i] = temp[i];
-
-//     return 0;
-
-// }
-
-// int two_way_merge(int arr[], int first, int last)
-// {
-//     int size = last - first +1;
-    
-//     if(size<=1)
-//     return 0;
-
-
-//     int middle = first + (last - first) / 2;
-    
-//     two_way_merge(arr,first,middle);
-// //for the first half of the array
-//     two_way_merge(arr,middle+1,last);
-//     //for the second  half of the array
-    
-//     s_merge(arr,first,middle+1,last);
-// }
-
-// int main() {
-//     int n;
-//     cin>>n;
-//     int arr[n];
-//     for(int i =0;i<n;i++)
-//     {
-//         cin>>arr[i];
-//     }
-    
-//     int first = 0;
-//     int last = n-1;
-
-//     two_way_merge(arr,first,last);
-    
-
-
-//      for(int i =0;i<n;i++)
-//     {
-//         cout<<arr[i];
-//     }
-// //input is done 
-    
-    
-    
-    
-    
-    
-//     return 0;
-// }
 #include <bits/stdc++.h>
 using namespace std;
 
-void s_merge(int arr[], int first, int middle, int last)
+int partition_qs(int arr[], int first, int last)
 {
-    int n1 = middle - first + 1;
-    int n2 = last - middle;
+    int pivot = arr[last];
+    int i = first - 1;
 
-    int left[n1], right[n2];
+    for(int j = first; j < last; j++)
+    {
+        if(arr[j] <= pivot)
+        {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i+1], arr[last]);
+    return i+1;
+}
 
-    for(int i = 0; i < n1; i++)
-        left[i] = arr[first + i];
+void quicksort(int arr[], int first, int last)
+{
+    if(first < last)
+    {
+        int p = partition_qs(arr, first, last);
+        quicksort(arr, first, p-1);
+        quicksort(arr, p+1, last);
+    }
+}
+void merge_arr(int arr[], int first, int mid, int last)
+{
+    int n1 = mid - first + 1;
+    int n2 = last - mid;
 
-    for(int j = 0; j < n2; j++)
-        right[j] = arr[middle + 1 + j];
+    vector<int> left(n1), right(n2);
 
-    int i = 0, j = 0, k = first;
+    for(int i=0;i<n1;i++)
+        left[i] = arr[first+i];
 
-    while(i < n1 && j < n2)
+    for(int j=0;j<n2;j++)
+        right[j] = arr[mid+1+j];
+
+    int i=0,j=0,k=first;
+
+    while(i<n1 && j<n2)
     {
         if(left[i] <= right[j])
             arr[k++] = left[i++];
@@ -127,40 +50,52 @@ void s_merge(int arr[], int first, int middle, int last)
             arr[k++] = right[j++];
     }
 
-    while(i < n1)
+    while(i<n1)
         arr[k++] = left[i++];
 
-    while(j < n2)
+    while(j<n2)
         arr[k++] = right[j++];
 }
 
-void two_way_merge(int arr[], int first, int last)
+void mergesort(int arr[], int first, int last)
 {
     if(first >= last)
         return;
 
-    int middle = first + (last - first) / 2;
+    int mid = (first + last)/2;
 
-    two_way_merge(arr, first, middle);
-    two_way_merge(arr, middle + 1, last);
+    mergesort(arr, first, mid);
+    mergesort(arr, mid+1, last);
 
-    s_merge(arr, first, middle, last);
+    merge_arr(arr, first, mid, last);
 }
 
 int main()
 {
     int n;
     cin >> n;
+    int arr1[n];
 
-    int arr[n];
+    for(int i=0;i<n;i++)
+        cin >> arr1[i];
 
-    for(int i = 0; i < n; i++)
-        cin >> arr[i];
+    int m;
+    cin >> m;
+    int arr2[m];
 
-    two_way_merge(arr, 0, n - 1);
+    for(int i=0;i<m;i++)
+        cin >> arr2[i];
 
-    for(int i = 0; i < n; i++)
-        cout << arr[i] << " ";
+    quicksort(arr1, 0, n-1);
+    mergesort(arr2, 0, m-1);
 
-    return 0;
+    cout << "Quick sort: ";
+    for(int i=0;i<n;i++)
+        cout << arr1[i] << " ";
+    cout << endl;
+
+    cout << "Merge sort: ";
+    for(int i=0;i<m;i++)
+        cout << arr2[i] << " ";
+    cout << endl;
 }
